@@ -37,7 +37,7 @@ function Index() {
       <Header />
       <section className="relative mx-auto h-[78vh] min-h-[520px] max-w-7xl overflow-hidden md:mt-0">
         {slides.map((s, k) => (
-          <div key={k} className={`absolute inset-0 transition-opacity duration-1000 ${k === i ? "opacity-100" : "opacity-0"}`}>
+          <div key={k} className={`absolute inset-0 transition-opacity duration-1000 ${k === i ? "z-10 opacity-100" : "pointer-events-none opacity-0"}`}>
             <img src={s.p.image} alt={s.title} className={`h-full w-full object-cover transition-transform duration-[6000ms] ${k === i ? "scale-105" : "scale-100"}`} />
             <div className="hero-fade absolute inset-0" />
             <div className="absolute inset-y-0 right-0 flex max-w-xl flex-col items-end justify-center px-10 text-right text-primary-foreground">
@@ -50,11 +50,11 @@ function Index() {
           </div>
         ))}
         {[-1, 1].map((d) => (
-          <button key={d} onClick={() => go(d)} aria-label="Slide" className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-primary/40 p-3 text-primary-foreground backdrop-blur transition hover:bg-primary/70 ${d < 0 ? "left-6" : "right-6"}`}>
+          <button key={d} onClick={() => go(d)} aria-label="Slide" className={`absolute z-20 top-1/2 -translate-y-1/2 rounded-full bg-primary/40 p-3 text-primary-foreground backdrop-blur transition hover:bg-primary/70 ${d < 0 ? "left-6" : "right-6"}`}>
             {d < 0 ? <ChevronLeft /> : <ChevronRight />}
           </button>
         ))}
-        <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-2">
+        <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2">
           {slides.map((_, k) => (
             <button key={k} onClick={() => setI(k)} aria-label={`Slide ${k + 1}`} className={`h-2.5 rounded-full transition-all ${k === i ? "w-9 bg-accent" : "w-2.5 bg-primary-foreground/60"}`} />
           ))}
@@ -74,14 +74,14 @@ function Index() {
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Browse by size</p>
       </div>
       {bhkGroups.map((g) => (
-        <Row key={g.bhk} title={`${g.bhk} BHK Villas`} subtitle={`Perfect for up to ${g.items[0]?.guests ?? 4}+ guests`} items={g.items} favs={favs} onFav={toggle} />
+        <Row key={g.bhk} id={`${g.bhk}-bhk`} title={`${g.bhk} BHK Villas`} subtitle={`Perfect for up to ${g.items[0]?.guests ?? 4}+ guests`} items={g.items} favs={favs} onFav={toggle} />
       ))}
 
       <div className="mx-auto mt-28 max-w-7xl px-6">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Curated collections</p>
       </div>
       {collections.map((c) => (
-        <Row key={c.id} title={c.title} subtitle={c.subtitle} items={c.items} favs={favs} onFav={toggle} />
+        <Row key={c.id} id={c.id} title={c.title} subtitle={c.subtitle} items={c.items} favs={favs} onFav={toggle} />
       ))}
       <Footer />
     </div>

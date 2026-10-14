@@ -44,3 +44,9 @@ export function useFavorites() {
   };
   return { favs, toggle };
 }
+
+export function getCategory(id: string) {
+  const b = bhkGroups.find((g) => `${g.bhk}-bhk` === id);
+  if (b) return { title: `${b.bhk} BHK Villas`, subtitle: `All ${b.bhk} bedroom stays in Goa`, items: b.items };
+  return collections.find((c) => c.id === id);
+}
