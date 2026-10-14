@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FavoritesRouteImport } from './routes/favorites'
+import { Route as CategoryIdRouteImport } from './routes/category.$id'
 import { Route as PropertySlugRouteImport } from './routes/property.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const FavoritesRoute = FavoritesRouteImport.update({
   path: '/favorites',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoryIdRoute = CategoryIdRouteImport.update({
+  id: '/category/$id',
+  path: '/category/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PropertySlugRoute = PropertySlugRouteImport.update({
   id: '/property/$slug',
   path: '/property/$slug',
@@ -32,30 +38,34 @@ const PropertySlugRoute = PropertySlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
+  '/category/$id': typeof CategoryIdRoute
   '/property/$slug': typeof PropertySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
+  '/category/$id': typeof CategoryIdRoute
   '/property/$slug': typeof PropertySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/favorites': typeof FavoritesRoute
+  '/category/$id': typeof CategoryIdRoute
   '/property/$slug': typeof PropertySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/favorites' | '/property/$slug'
+  fullPaths: '/' | '/favorites' | '/category/$id' | '/property/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/favorites' | '/property/$slug'
-  id: '__root__' | '/' | '/favorites' | '/property/$slug'
+  to: '/' | '/favorites' | '/category/$id' | '/property/$slug'
+  id: '__root__' | '/' | '/favorites' | '/category/$id' | '/property/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FavoritesRoute: typeof FavoritesRoute
+  CategoryIdRoute: typeof CategoryIdRoute
   PropertySlugRoute: typeof PropertySlugRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/category/$id': {
+      id: '/category/$id'
+      path: '/category/$id'
+      fullPath: '/category/$id'
+      preLoaderRoute: typeof CategoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/property/$slug': {
       id: '/property/$slug'
       path: '/property/$slug'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FavoritesRoute: FavoritesRoute,
+  CategoryIdRoute: CategoryIdRoute,
   PropertySlugRoute: PropertySlugRoute,
 }
 export const routeTree = rootRouteImport
