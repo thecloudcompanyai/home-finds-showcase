@@ -75,17 +75,18 @@ export function PropertyCard({ p, fav, onFav }: { p: Property; fav?: boolean; on
   );
 }
 
-export function Row({ title, subtitle, items, favs, onFav }: { title: string; subtitle: string; items: Property[]; favs: string[]; onFav: (s: string) => void }) {
+export function Row({ id, title, subtitle, items, favs, onFav }: { id: string; title: string; subtitle: string; items: Property[]; favs: string[]; onFav: (s: string) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const scroll = (d: number) => ref.current?.scrollBy({ left: d * ref.current.clientWidth * 0.8, behavior: "smooth" });
   return (
     <section className="mx-auto mt-20 max-w-7xl px-6">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-primary md:text-4xl">{title}</h2>
+          <Link to="/category/$id" params={{ id }} className="hover:text-accent"><h2 className="text-3xl font-bold text-primary transition-colors hover:text-accent md:text-4xl">{title}</h2></Link>
           <p className="mt-2 text-muted-foreground">{subtitle} · {items.length} stays</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          <Link to="/category/$id" params={{ id }} className="mr-3 border-b border-primary font-semibold text-primary hover:border-accent hover:text-accent">View All →</Link>
           {[-1, 1].map((d) => (
             <button key={d} onClick={() => scroll(d)} aria-label={d < 0 ? "Previous" : "Next"} className="rounded-full border border-border bg-card p-2.5 shadow-sm transition hover:border-accent hover:text-accent">
               {d < 0 ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
