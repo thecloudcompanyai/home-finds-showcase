@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Heart, ShieldCheck, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Footer, Header, Row } from "@/components/site";
-import { bhkGroups, collections, properties, useFavorites } from "@/lib/properties";
+import { bhkGroups, collections, properties, useFavorites, type Property } from "@/lib/properties";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,10 +17,10 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { tag: "Private Pools", script: "Escape", title: "Stand-alone Villas", text: "Your own piece of Goa — no neighbours, just palms and quiet.", p: properties.find((p) => p.type === "Stand-alone villa")! },
-  { tag: "Top Rated", script: "Unwind", title: "Five-Star Stays", text: "Homes our guests rate a perfect five, every time.", p: properties[1] },
-  { tag: "Groups & Families", script: "Gather", title: "Big Group Getaways", text: "Spacious villas built for long dinners and loud laughter.", p: properties.find((p) => p.guests >= 8) ?? properties[2] },
-  { tag: "North Goa", script: "Restore", title: "Assagao Retreats", text: "Leafy lanes, slow mornings and Goa's best cafés nearby.", p: properties.find((p) => p.location === "Assagao")! },
+  { tag: "Private Pools", script: "Escape", title: "Stand-alone Villas", text: "Your own piece of Goa — no neighbours, just palms and quiet.", p: (properties.find((p) => p.type === "Stand-alone villa")!) as Property },
+  { tag: "Top Rated", script: "Unwind", title: "Five-Star Stays", text: "Homes our guests rate a perfect five, every time.", p: (properties[1]) as Property },
+  { tag: "Groups & Families", script: "Gather", title: "Big Group Getaways", text: "Spacious villas built for long dinners and loud laughter.", p: (properties.find((p) => p.guests >= 8) ?? properties[2]) as Property },
+  { tag: "North Goa", script: "Restore", title: "Assagao Retreats", text: "Leafy lanes, slow mornings and Goa's best cafés nearby.", p: (properties.find((p) => p.location === "Assagao")!) as Property },
 ];
 
 function Index() {
@@ -74,7 +74,7 @@ function Index() {
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">Browse by size</p>
       </div>
       {bhkGroups.map((g) => (
-        <Row key={g.bhk} title={`${g.bhk} BHK Villas`} subtitle={`Perfect for up to ${g.items[0].guests}+ guests`} items={g.items} favs={favs} onFav={toggle} />
+        <Row key={g.bhk} title={`${g.bhk} BHK Villas`} subtitle={`Perfect for up to ${g.items[0]?.guests ?? 4}+ guests`} items={g.items} favs={favs} onFav={toggle} />
       ))}
 
       <div className="mx-auto mt-28 max-w-7xl px-6">
