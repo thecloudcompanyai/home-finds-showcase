@@ -72,7 +72,7 @@ function Detail() {
 
           <section className="mt-12 border-t border-border pt-10">
             <h2 className="text-3xl font-bold text-primary">About the Villa</h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{p.original} is a beautiful {p.bedrooms}-bedroom {p.type.toLowerCase()} located in {p.location}, Goa. It offers a private pool, inverter back-up and modern amenities for a comfortable stay — perfect for families and groups of up to {p.guests} looking for a luxurious escape.</p>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{p.name} is a beautiful {p.bedrooms}-bedroom {p.type.toLowerCase()} located in {p.location}, Goa. It offers a private pool, inverter back-up and modern amenities for a comfortable stay — perfect for families and groups of up to {p.guests} looking for a luxurious escape.</p>
           </section>
 
           <section className="mt-12 border-t border-border pt-10">
