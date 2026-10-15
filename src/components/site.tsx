@@ -25,7 +25,7 @@ export function Footer() {
   const cols = [
     ["Destinations", ["Assagao", "Siolim", "Anjuna", "Vagator"]],
     ["Collections", ["Stand-alone Villas", "Estate Villas", "Top Rated", "Big Group Getaways"]],
-    ["Support", ["+91 93155 72283", "Email Concierge", "WhatsApp", "Live Chat"]],
+    ["Support", ["+91 82878 40116", "Email Concierge", "WhatsApp", "Live Chat"]],
   ] as const;
   return (
     <footer className="mx-auto mt-24 max-w-7xl bg-primary px-8 py-14 text-primary-foreground md:rounded-t-3xl">

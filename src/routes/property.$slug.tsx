@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-rout
 import { ArrowLeft, Bath, BedDouble, Calendar, Check, Coffee, Heart, Mail, MapPin, MessageCircle, Phone, Star, Users, Waves, Wifi } from "lucide-react";
 import { Footer } from "@/components/site";
 import { getProperty, inr, useFavorites } from "@/lib/properties";
+import { BookingForm } from "@/components/BookingForm";
 
 export const Route = createFileRoute("/property/$slug")({
   loader: ({ params }) => {
@@ -101,13 +102,16 @@ function Detail() {
             <p className="mt-2 text-sm">per night, excluding taxes</p>
           </div>
 
+          <BookingForm villa={p.name} maxGuests={p.guests} />
+
+
           <div className="mt-8 rounded-3xl border border-border bg-muted px-6 py-10 text-center">
             <h2 className="text-3xl font-bold text-primary">Contact Malina Holidays</h2>
             <p className="mx-auto mt-4 max-w-lg text-muted-foreground">Interested in booking {p.name}? Our travel advisors are on hand to craft your perfect escape.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a href="tel:+919315572283" className="flex items-center gap-2 rounded-xl bg-primary px-6 py-4 font-semibold text-primary-foreground"><Phone className="h-5 w-5" />+91 93155 72283</a>
+              <a href="tel:+918287840116" className="flex items-center gap-2 rounded-xl bg-primary px-6 py-4 font-semibold text-primary-foreground"><Phone className="h-5 w-5" />+91 82878 40116</a>
               <a href="mailto:concierge@malinaholidays.com" className="flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-4 font-semibold"><Mail className="h-5 w-5" />Email Concierge</a>
-              <a href={`https://wa.me/919315572283?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-xl bg-whatsapp px-6 py-4 font-semibold text-primary-foreground"><MessageCircle className="h-5 w-5" />WhatsApp</a>
+              <a href={`https://wa.me/918287840116?text=${encodeURIComponent("Hi, I'm interested in " + p.name)}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-xl bg-whatsapp px-6 py-4 font-semibold text-primary-foreground"><MessageCircle className="h-5 w-5" />WhatsApp</a>
             </div>
           </div>
         </div>
