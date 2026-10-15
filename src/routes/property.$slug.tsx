@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-rout
 import { ArrowLeft, Bath, BedDouble, Calendar, Check, Coffee, Heart, Mail, MapPin, MessageCircle, Phone, Star, Users, Waves, Wifi } from "lucide-react";
 import { Footer } from "@/components/site";
 import { getProperty, inr, useFavorites } from "@/lib/properties";
+import { BookingForm } from "@/components/BookingForm";
 
 export const Route = createFileRoute("/property/$slug")({
   loader: ({ params }) => {
