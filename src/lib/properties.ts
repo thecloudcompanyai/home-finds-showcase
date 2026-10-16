@@ -20,7 +20,7 @@ export type Property = {
 const galleries: Record<string, string[]> = galleryData;
 export const properties: Property[] = (data as Property[]).map((property) => {
   const images = galleries[property.slug];
-  return images?.length ? { ...property, image: images[0], images } : property;
+  return images?.length ? { ...property, image: images[0] ?? property.image, images } : property;
 });
 export const getProperty = (slug: string) => properties.find((p) => p.slug === slug);
 export const inr = (n: number) => "₹" + n.toLocaleString("en-IN");
