@@ -11,6 +11,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Browse 150 handpicked luxury villas in Goa by BHK and curated collections." },
       { property: "og:title", content: "Malina Holidays — Luxury Villas in Goa" },
       { property: "og:description", content: "Browse 150 handpicked luxury villas in Goa by BHK and curated collections." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

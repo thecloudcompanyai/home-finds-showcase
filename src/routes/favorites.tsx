@@ -9,6 +9,8 @@ export const Route = createFileRoute("/favorites")({
       { name: "description", content: "Villas you've saved on Malina Holidays." },
       { property: "og:title", content: "Your Favorites — Malina Holidays" },
       { property: "og:description", content: "Villas you've saved on Malina Holidays." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Favorites,

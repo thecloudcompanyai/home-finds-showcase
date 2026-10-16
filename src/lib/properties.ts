@@ -1,4 +1,5 @@
 import data from "@/data/properties.json";
+import galleryData from "@/data/villa-galleries.json";
 import { useEffect, useState } from "react";
 
 export type Property = {
@@ -11,11 +12,16 @@ export type Property = {
   bathrooms: number;
   guests: number;
   image: string;
+  images?: string[];
   original: string;
   type: string;
 };
 
-export const properties = data as Property[];
+const galleries: Record<string, string[]> = galleryData;
+export const properties: Property[] = (data as Property[]).map((property) => {
+  const images = galleries[property.slug];
+  return images?.length ? { ...property, image: images[0], images } : property;
+});
 export const getProperty = (slug: string) => properties.find((p) => p.slug === slug);
 export const inr = (n: number) => "₹" + n.toLocaleString("en-IN");
 

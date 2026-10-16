@@ -1,0 +1,3 @@
+- [ ] Save uploaded photos matched to the 37 supplied villa names.
+- [ ] Add browsable villa galleries and use matching cover photos.
+- [ ] Verify photo navigation and mobile layout.
