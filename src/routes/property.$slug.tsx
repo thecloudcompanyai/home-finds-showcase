@@ -3,6 +3,7 @@ import { ArrowLeft, Bath, BedDouble, Calendar, Check, Coffee, Heart, Mail, MapPi
 import { Footer } from "@/components/site";
 import { getProperty, inr, useFavorites } from "@/lib/properties";
 import { BookingForm } from "@/components/BookingForm";
+import { PropertyGallery } from "@/components/PropertyGallery";
 
 export const Route = createFileRoute("/property/$slug")({
   loader: ({ params }) => {
@@ -17,8 +18,12 @@ export const Route = createFileRoute("/property/$slug")({
           { name: "description", content: `${p.bedrooms} BHK villa in ${p.location}, Goa from ${inr(p.price)}/night.` },
           { property: "og:title", content: `${p.name} — Malina Holidays` },
           { property: "og:description", content: `${p.bedrooms} BHK villa in ${p.location}, Goa.` },
-          { property: "og:image", content: p.image },
-          { name: "twitter:image", content: p.image },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
+          ...(p.image.startsWith("https://") ? [
+            { property: "og:image", content: p.image },
+            { name: "twitter:image", content: p.image },
+          ] : []),
         ]
       : [{ title: "Villa not found" }, { name: "robots", content: "noindex" }],
   }),
@@ -42,12 +47,7 @@ function Detail() {
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-8">
-        <div className="relative overflow-hidden rounded-3xl">
-          <img src={p.image} alt={p.name} className="aspect-[16/8] w-full object-cover" />
-          <button onClick={() => toggle(p.slug)} aria-label="Save" className="absolute right-5 top-5 rounded-full bg-card/90 p-3">
-            <Heart className={`h-5 w-5 ${fav ? "fill-destructive text-destructive" : "text-primary"}`} />
-          </button>
-        </div>
+        <PropertyGallery key={p.slug} name={p.name} images={p.images ?? [p.image]} favorite={fav} onFavorite={() => toggle(p.slug)} />
 
         <div className="mx-auto mt-10 max-w-5xl">
           <div className="flex gap-2">

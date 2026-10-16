@@ -15,6 +15,8 @@ export const Route = createFileRoute("/category/$id")({
           { name: "description", content: `${c.subtitle}. Browse all ${c.title.toLowerCase()} on Malina Holidays.` },
           { property: "og:title", content: `${c.title} in Goa — Malina Holidays` },
           { property: "og:description", content: c.subtitle },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
         ]
       : [{ title: "Unavailable" }, { name: "robots", content: "noindex" }],
   }),
