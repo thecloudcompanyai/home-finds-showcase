@@ -47,7 +47,7 @@ function Detail() {
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-8">
-        <PropertyGallery key={p.slug} name={p.name} images={p.images ?? [p.image]} favorite={fav} onFavorite={() => toggle(p.slug)} />
+        <PropertyGallery key={p.slug} slug={p.slug} name={p.name} cover={p.image} favorite={fav} onFavorite={() => toggle(p.slug)} />
 
         <div className="mx-auto mt-10 max-w-5xl">
           <div className="flex gap-2">

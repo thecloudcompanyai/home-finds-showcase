@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Heart, Expand } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { loadVillaGallery } from "@/lib/villa-gallery";
 
-export function PropertyGallery({ name, images, favorite, onFavorite }: {
+export function PropertyGallery({ slug, name, cover, favorite, onFavorite }: {
+  slug: string;
   name: string;
-  images: string[];
+  cover: string;
   favorite: boolean;
   onFavorite: () => void;
 }) {
+  const [images, setImages] = useState<string[]>([cover]);
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    let active = true;
+    loadVillaGallery(slug, cover).then((album) => {
+      if (active) setImages(album);
+    }).catch(() => {
+      // Keep the cover available if an album download fails.
+    });
+    return () => { active = false; };
+  }, [slug, cover]);
   const current = images[index] ?? images[0];
   const navigate = (direction: number) => setIndex((value) => (value + direction + images.length) % images.length);
   const arrows = (
@@ -22,7 +34,7 @@ export function PropertyGallery({ name, images, favorite, onFavorite }: {
   return (
     <div>
       <div className="relative overflow-hidden rounded-lg bg-muted">
-        <img src={current} alt={`${name} — photo ${index + 1}`} className="aspect-[4/3] w-full object-cover md:aspect-[16/8]" fetchPriority="high" />
+        <img src={current} alt={`${name} — photo ${index + 1}`} className="aspect-[4/3] w-full object-cover md:aspect-[16/8]" loading="eager" decoding="async" fetchPriority="high" />
         <Button variant="secondary" size="icon" onClick={onFavorite} aria-label={favorite ? "Remove from favorites" : "Save to favorites"} title="Save villa" className="absolute right-4 top-4 bg-card/95">
           <Heart className={favorite ? "fill-destructive text-destructive" : "text-primary"} />
         </Button>
