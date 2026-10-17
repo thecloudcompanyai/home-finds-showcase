@@ -21,4 +21,17 @@ describe("Deferred villa albums", () => {
   it("keeps the cover for villas without supplied albums", async () => {
     expect(await loadVillaGallery("villa-without-album", "cover.jpg")).toEqual(["cover.jpg"]);
   });
+
+  it.each([
+    "airy-5-bedroom-villa-in-anjuna",
+    "modern-2-bedroom-villa-in-siolim",
+    "banyan-2-bedroom-villa-in-assagao",
+  ])("loads the new ten-photo album for %s with its listing cover", async (slug) => {
+    const property = getProperty(slug);
+    if (!property) throw new Error("Expected uploaded villa is missing");
+    const images = await loadVillaGallery(slug, property.image);
+    expect(images).toHaveLength(10);
+    expect(images[0]).toBe(property.image);
+    expect(images.every((image) => image.startsWith("/__l5e/assets-v1/") && image.includes(slug))).toBe(true);
+  });
 });
