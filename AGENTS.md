@@ -11,3 +11,4 @@
 
 - Match uploaded villa galleries by exact listing name, store photo pointers in `src/assets/villas`, and expose gallery URLs through a shared data manifest so covers and detail pages stay consistent.
 - Keep villa photo interaction in `PropertyGallery` using the existing Button and Dialog controls so browsing stays accessible and separate from booking details.
+- Keep covers in a lightweight shared manifest and load per-villa gallery manifests on detail mount, not navigation prefetch, so listings never download entire albums.

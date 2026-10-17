@@ -1,3 +1,4 @@
 - [x] Save uploaded photos matched to the 37 supplied villa names.
 - [x] Add browsable villa galleries and use matching cover photos.
 - [x] Verify photo navigation and mobile layout.
+- [x] Defer gallery data until a villa opens and verify cover-only listing requests.
