@@ -2,3 +2,5 @@
 - [x] Add browsable villa galleries and use matching cover photos.
 - [x] Verify photo navigation and mobile layout.
 - [x] Defer gallery data until a villa opens and verify cover-only listing requests.
+- [ ] Add the new upload's 370 photos to its 37 matching villas without replacing existing albums.
+- [ ] Verify new covers and photo browsing while preserving deferred loading.
