@@ -1,5 +1,6 @@
 import data from "@/data/properties.json";
 import coverData from "@/data/villa-covers.json";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import { useEffect, useState } from "react";
 
 export type Property = {
@@ -19,7 +20,7 @@ export type Property = {
 
 const covers: Record<string, string> = coverData;
 export const properties: Property[] = (data as Property[]).map((property) => {
-  return { ...property, image: covers[property.slug] ?? property.image };
+  return { ...property, image: resolveAssetUrl(covers[property.slug] ?? property.image) };
 });
 export const getProperty = (slug: string) => properties.find((p) => p.slug === slug);
 export const inr = (n: number) => "₹" + n.toLocaleString("en-IN");
